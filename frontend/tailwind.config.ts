@@ -9,8 +9,8 @@ const config: Config = {
   theme: {
     extend: {
       screens: {
-        'max-xs': {'max': '570px'},
-        'min-xs': {'min': '570px'},
+        'max-xs': {'max': '590px'},
+        'min-xs': {'min': '590px'},
       },
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
@@ -19,6 +19,8 @@ const config: Config = {
       },
     },
   },
-  plugins: [require("daisyui")],
+  plugins: [
+    require("daisyui")
+  ],
 }
 export default config
