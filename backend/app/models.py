@@ -1,4 +1,4 @@
-from sqlalchemy import Boolean, Column, ForeignKey, Integer, String
+from sqlalchemy import Boolean, Column, ForeignKey, Integer, String, Float
 from sqlalchemy.orm import relationship
 
 from database import Base
@@ -12,15 +12,18 @@ class User(Base):
     hashed_password = Column(String)
     is_active = Column(Boolean, default=True)
 
-    items = relationship("Item", back_populates="owner")
+
+class Model(Base):
+    __tablename__ = "models"
+    id = Column(Integer, primary_key=True, index = True)
+    name = Column(String, unique= True, index =True)
 
 
-class Item(Base):
-    __tablename__ = "items"
+class Result(Base):
+    __tablename__ = "results"
+    id = Column(Integer, primary_key=True, index = True)
+    model = relationship("Model")
+    confidence_level = Column(Float)
 
-    id = Column(Integer, primary_key=True, index=True)
-    title = Column(String, index=True)
-    description = Column(String, index=True)
-    owner_id = Column(Integer, ForeignKey("users.id"))
-
-    owner = relationship("User", back_populates="items")
+class Audio(Base):
+    __tablename__ = "results"
