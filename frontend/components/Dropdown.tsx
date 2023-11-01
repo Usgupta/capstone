@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { BiChevronDown } from "react-icons/bi";
 import { AiOutlineSearch } from "react-icons/ai";
 
@@ -9,6 +9,7 @@ const Selector = () => {
   const [inputValue, setInputValue] = useState("");
   const [selected, setSelected] = useState("");
   const [open, setOpen] = useState(false);
+  const dropdownRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
     fetch("https://restcountries.com/v2/all?fields=name")
@@ -18,9 +19,26 @@ const Selector = () => {
       });
   }, []);
 
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+        setOpen(!open)
+      }
+    };
+    if (open) {
+      // Attach the event listener when the dropdown is open.
+      document.addEventListener('click', handleClickOutside);
+    }
+    return () => {
+      // Clean up the event listener when the component unmounts.
+      document.removeEventListener('click', handleClickOutside);
+    };
+  }, [open]);
+
   return (
     <div className="w-72 font-medium h-80">
       <div
+        ref={dropdownRef}
         onClick={() => setOpen(!open)}
         className={`bg-gray-200 w-full p-2 flex items-center justify-between rounded-lg ${!selected && "text-gray-700"}`}>
         {selected
