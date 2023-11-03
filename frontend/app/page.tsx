@@ -1,7 +1,15 @@
-export default function Home() {
+'use client';
+import React from 'react';
+import { CSSProperties } from "react";
+import { Canvas } from "@react-three/fiber";
+import Blob from "../components/Blob";
+
+
+const App: React.FC = () => {
+
   return (
-    <main>
-      <h1>Hello World!</h1>
-    </main>
-  )
-}
+    <div></div>
+  );
+};
+
+export default App;

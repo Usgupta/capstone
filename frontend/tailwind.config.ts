@@ -9,13 +9,11 @@ const config: Config = {
   theme: {
     extend: {
       screens: {
-        'max-xs': {'max': '570px'},
+        'max-xs': {'max': '570px'}, 
         'min-xs': {'min': '570px'},
       },
       backgroundImage: {
-        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
-        'gradient-conic':
-          'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
+        'test': 'radial-gradient(circle at top left, #e66465, transparent 100px), radial-gradient(circle at right, #4d9f0c, transparent 100px), radial-gradient(circle at bottom, #0000ff, transparent 100px),  radial-gradient(circle at center, #FFFFFF, #FFFFFF)',
       },
     },
   },

@@ -2,7 +2,8 @@ import type { Metadata } from 'next'
 import './globals.css'
 
 // Components
-import Navbar from './components/Navbar'
+import Navbar from '../components/Navbar'
+import Background from '../components/Background'
 
 export const metadata: Metadata = {
   title: 'Deepfake Detector',
@@ -16,7 +17,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
+      
       <body>
+        <Background />
         <Navbar />
         {children}
       </body>

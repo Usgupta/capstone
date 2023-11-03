@@ -2,7 +2,7 @@ import Link from "next/link";
 
 export default function Navbar() {
 	return (
-		<nav className="bg-white dark:bg-gray-900 w-full z-20 top-0 left-0">
+		<nav className="w-full z-20 top-0 left-0">
 			<div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
 				<div className="flex items-center">
 					<img src="https://www.htx.gov.sg/images/default-source/htx-image-library/who-we-are_why-we-exist_logoe20dfc9c67824b68ba78e31fb41f5c9f.png?sfvrsn=c4524eb2_0" className="h-16 mr-3"></img>
