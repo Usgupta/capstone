@@ -28,7 +28,7 @@ class Audio(Base):
     __tablename__ = "Audio"
     id = Column(Integer, primary_key=True, index = True)
     format = Column(String)
-    length = confidence_level = Column(Float)
+    length = Column(Float)
     data = relationship("AudioData", back_populates = 'filename' )
 
 class AudioData(Base):
