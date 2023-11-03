@@ -22,7 +22,7 @@ class Result(Base):
     __tablename__ = "results"
     id = Column(Integer, primary_key=True, index = True)
     model = relationship("Model", back_populates = 'name')
-    confidence_level = Column(Float)
+    result = Column(Boolean)
 
 class Audio(Base):
     __tablename__ = "Audio"
