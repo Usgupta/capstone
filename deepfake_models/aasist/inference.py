@@ -15,6 +15,8 @@ import torch.nn as nn
 from torch.utils.data import DataLoader
 from torch.utils.tensorboard import SummaryWriter
 from torchcontrib.optim import SWA
+import numpy as np
+
 
 from data_utils import (Dataset_ASVspoof2019_train,
                         Dataset_ASVspoof2019_devNeval, genSpoof_list)
@@ -69,6 +71,20 @@ f_path = "LA_E_1000147.flac"
 #obtained by running evaluation
 threshold = -5.680051 
 
+
+def get_confidence(score, threshold, k=1):
+    diff = score - threshold
+    confidence = 1 / (1 + np.exp(-k * diff))
+
+    # Assign a confidence percentage to each category
+    if score >= threshold:
+        true_confidence = confidence
+    else:
+        true_confidence = 1 - confidence
+
+    return true_confidence*100
+    
+
 def preprocess_file(file_path):
     X, _ = sf.read(file_path)
     X_pad = pad(X)
@@ -91,4 +107,4 @@ def run_aasist(file_path):
             _, batch_out = model(batch_x)
             batch_score = (batch_out[:, 1]).data.cpu().numpy().ravel()
             if batch_score > threshold:
-                return True
+                return True, get_confidence(batch_score[0], threshold)
