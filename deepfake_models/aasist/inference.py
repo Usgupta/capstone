@@ -23,10 +23,6 @@ from utils import create_optimizer, seed_worker, set_seed, str_to_bool
 import numpy as np
 
 device = torch.device("cpu")
-# device = "cuda" if torch.cuda.is_available() else "cpu"
-# print("Device: {}".format(device))
-# if device == "cpu":
-#     raise ValueError("GPU not detected!")
 
 def get_model(model_config: Dict, device: torch.device):
     """Define DNN model architecture"""
@@ -69,35 +65,16 @@ def pad(x, max_len=64600):
     padded_x = np.tile(x, (1, num_repeats))[:, :max_len][0]
     return padded_x
 
-
-# fother = "26.-Boruto-OST-2-Virtue-_Growth-of-a-Child_.flac"
 f_path = "LA_E_1000147.flac"
-# model = get_model(config["model_config"], device)
+#obtained by running evaluation
+threshold = -5.680051 
 
 def preprocess_file(file_path):
     X, _ = sf.read(file_path)
-        # print(sf.info(str(self.base_dir / f"flac/{key}.flac")))
     X_pad = pad(X)
     x_inp = Tensor(X_pad)
-    
-# eval_set = Dataset_A SVspoof2019_devNeval(list_IDs=file_eval, base_dir=eval_database_path)
     single_audio_sample = np.expand_dims(x_inp, axis=0)
     return single_audio_sample
-
-
-
-
-
-# print(sf.info(f_path))
-# print(info.channels, info.samplerate, info.format, info.subtype, info.endian)
-# print("x is shape iss",X.shape)
-# X_pad = pad(X, 64600)
-# print("padded",X_pad.shape)
-# print(x_inp.shape)
-
-
-
-# batch_score = (batch_out[:, 1]).data.cpu().numpy().ravel()
 
 def run_aasist(file_path):
     model = get_model(config["model_config"], device)
@@ -109,19 +86,9 @@ def run_aasist(file_path):
                              drop_last=False,
                              pin_memory=True)
     for batch_x in eval_loader:
-# # x_inp = x_inp.to(device)
         batch_x = batch_x.to(device)
         with torch.no_grad():
-            print("i caleed")
             _, batch_out = model(batch_x)
-            print(batch_out)
             batch_score = (batch_out[:, 1]).data.cpu().numpy().ravel()
-            print(batch_score)
-            return batch_score
-
-print(run_aasist(f_path))
-
-
-
-inference.py
-Displaying inference.py.
+            if batch_score > threshold:
+                return True
