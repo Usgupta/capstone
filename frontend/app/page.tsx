@@ -45,7 +45,7 @@ export default  function Home() {
 
         const result = await response.json();
 
-        const resultsPageURL = `/results?confidence=${result.confidence}`;
+        const resultsPageURL = `/results?confidence=${result.confidence}&result=${result.result}`;
 
         router.push(resultsPageURL);
   

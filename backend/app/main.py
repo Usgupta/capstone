@@ -8,6 +8,9 @@ from database import SessionLocal, engine
 from fastapi.responses import RedirectResponse
 
 from fastapi.middleware.cors import CORSMiddleware
+import sys
+sys.path.insert(0, '../../')
+import deepfake_models.aasist.inference as inference
 
 app = FastAPI()
 
@@ -47,12 +50,10 @@ def read_root():
 
 @app.post("/run/")
 def run_model(file: UploadFile = File(...)):
-    confidence = 91
+    result, confidence = run_aasist(file.file)
 # RedirectResponse(url=f"http://localhost:3000/results?confidence={confidence}")
 # {"confidence":{confidence}}
-    return {"confidence":{confidence}}
-
-
+    return {"confidence":{confidence}, "result":{result}}
 
 @app.post("/users/", response_model=schemas.User)
 def create_user(user: schemas.UserCreate, db: Session = Depends(get_db)):
@@ -74,3 +75,10 @@ def read_user(user_id: int, db: Session = Depends(get_db)):
     if db_user is None:
         raise HTTPException(status_code=404, detail="User not found")
     return db_user
+
+
+# from deepfake_models.aasist import inference
+f = "/Users/user/capstone/deepfake_models/aasist/LA_E_1000147.flac"
+
+def run_aasist(file_path):
+    return inference.run_aasist(file_path=file_path)

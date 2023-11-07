@@ -12,6 +12,7 @@ export default function Results() {
   const searchParams = useSearchParams()
 
   const confidence = searchParams.get('confidence')
+  const result = searchParams.get('result')
 
   console.log(confidence)
 
@@ -27,7 +28,7 @@ export default function Results() {
   return (
     <div className="flex justify-center items-center h-screen">
       <div className="text-center">
-        <p className="text-2xl">{confidence}% confidence level</p>
+        <p className="text-2xl">The audio is {result} by {confidence}% confidence level</p>
         <div className="flex justify-center mt-6">
           <Link href="/">
             <button className="bg-blue-300 btn ml-5 min-h-min h-[41px] rounded-lg">
