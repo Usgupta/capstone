@@ -10,7 +10,6 @@ models.Base.metadata.create_all(bind=engine)
 
 app = FastAPI()
 
-
 if __name__ == "__main__":
     import uvicorn
     uvicorn.run(app, host="0.0.0.0", port=8000)
@@ -26,7 +25,6 @@ def get_db():
 @app.get("/")
 def read_root():
     return {"message": "Hello, FastAPI!"}
-
 
 
 @app.post("/users/", response_model=schemas.User)
