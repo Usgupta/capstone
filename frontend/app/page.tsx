@@ -4,11 +4,16 @@
 import Dropdown from '@/components/Dropdown'
 import Uploadfile from '../components/Uploadfile'
 import { useState, ChangeEvent } from "react";
-
+import { useSearchParams,useRouter } from 'next/navigation';
+import Link from 'next/link';
 
 
 export default  function Home() {
   const [file, setFile] = useState<File | null>(null);
+  const [selected, setSelected] = useState("");
+
+
+  const router = useRouter();
 
   const formData = new FormData();
   if (file!=null){
@@ -22,9 +27,11 @@ export default  function Home() {
       return;
     }
 
+    console.log(selected)
+
     const formData = new FormData();
     formData.append('file', file);
-    // formData.append('option', selectedOption); // Include the selected option
+    formData.append('option', selected); // Include the selected option
 
     try {
       const response = await fetch('http://127.0.0.1:8000/run/', {
@@ -33,6 +40,19 @@ export default  function Home() {
       });
       if (response.ok) {
         console.log('File uploaded successfully!');
+
+        // const params = new URLSearchParams(useSearchParams());
+
+        const result = await response.json();
+
+        const resultsPageURL = `/results?confidence=${result.confidence}`;
+
+        router.push(resultsPageURL);
+  
+        //   result
+        // })
+
+
       } else {
         console.error('Failed to upload file');
       }
@@ -45,7 +65,7 @@ export default  function Home() {
     <main className='flex flex-col justify-center items-center h-[580px] mt-6'>
       <Uploadfile file={file} setFile={setFile}  />
       <div className='flex justify-between mt-10'>
-        <Dropdown />
+        <Dropdown selected={selected} setSelected={setSelected}/>
         <button className='bg-blue-300 btn ml-5 min-h-min h-[41px] rounded-lg' onClick={handleFileUpload}>Run</button>
       </div>
     </main>

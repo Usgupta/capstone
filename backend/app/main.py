@@ -5,6 +5,7 @@ from sqlalchemy.orm import Session
 
 import crud, models, schemas
 from database import SessionLocal, engine
+from fastapi.responses import RedirectResponse
 
 from fastapi.middleware.cors import CORSMiddleware
 
@@ -16,6 +17,7 @@ models.Base.metadata.create_all(bind=engine)
 
 origins = [
     "http://localhost:3000",
+    "http://localhost:3000/results",
 ]
 
 app.add_middleware(
@@ -44,9 +46,12 @@ def read_root():
     return {"message": "Hello, FastAPI!"}
 
 @app.post("/run/")
-def showmsg(file: UploadFile = File(...)):
+def run_model(file: UploadFile = File(...)):
+    confidence = 91
+# RedirectResponse(url=f"http://localhost:3000/results?confidence={confidence}")
+# {"confidence":{confidence}}
+    return {"confidence":{confidence}}
 
-    return {"message": "Hello, somehting was uploaded!"}
 
 
 @app.post("/users/", response_model=schemas.User)
