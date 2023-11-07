@@ -6,9 +6,25 @@ from sqlalchemy.orm import Session
 import crud, models, schemas
 from database import SessionLocal, engine
 
-models.Base.metadata.create_all(bind=engine)
+from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI()
+
+
+models.Base.metadata.create_all(bind=engine)
+
+
+origins = [
+    "http://localhost:3000",
+]
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 
 if __name__ == "__main__":
@@ -27,6 +43,10 @@ def get_db():
 def read_root():
     return {"message": "Hello, FastAPI!"}
 
+@app.post("/run/")
+def showmsg(file: UploadFile = File(...)):
+
+    return {"message": "Hello, somehting was uploaded!"}
 
 
 @app.post("/users/", response_model=schemas.User)

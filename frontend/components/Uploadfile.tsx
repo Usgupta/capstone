@@ -6,9 +6,9 @@ import Dropzone from "react-dropzone";
 // Components
 import Audioplayer from "./Audioplayer";
 
-export default function Uploadfile() {
+export default function Uploadfile({ file, setFile }: { file: File | null; setFile: (file: File | null) => void }) {
 
-    const [file, setFile] = useState<File | null>(null);
+    // const [file, setFile] = useState<File | null>(null);
 
     const handleFileChange = (acceptedFiles: File[]) => {
         setFile(acceptedFiles[0])
@@ -17,6 +17,13 @@ export default function Uploadfile() {
     const handleResetBtn = () => {
         setFile(null)
     }
+
+    // Function to get the selected file
+  const getFile = () => {
+    return file;
+
+    
+  };
 
     return (
         <div className="max-w-xl w-full h-44">
@@ -40,3 +47,5 @@ export default function Uploadfile() {
         </div>
     )
 }
+
+
