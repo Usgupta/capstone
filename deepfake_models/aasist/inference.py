@@ -20,9 +20,14 @@ import sys
 import numpy as np
 from deepfake_models.aasist import models
 import deepfake_models.aasist.models.AASIST as aasist
+import joblib
+import os
 device = torch.device("cpu")
 
 model_path= "../../deepfake_models/aasist/models/weights/AASIST.pth"
+# Load the model from the file
+os.system("ls")
+calc_prob_model = joblib.load('../../deepfake_models/aasist/models/logistic_regression_aasist_calc_prob_model.joblib')
 
 # model.load_state_dict(
             # torch.load(config["model_path"], map_location=device))
@@ -75,15 +80,20 @@ f_path = "LA_E_1000147.flac"
 threshold = -5.680051 
 
 
-def get_confidence(score, threshold, k=1):
-    diff = score - threshold
-    confidence = 1 / (1 + np.exp(-k * diff))
+def get_confidence(score):
+    print("scoe is",score)
+    prob = calc_prob_model.predict_proba(score.reshape(-1, 1))[:, 1]
+    print("prob is",prob)
+    prob = prob[0]
+    norm_threshold = 0.3888572108980983
+    # diff = score - threshold
+    # confidence = 1 / (1 + np.exp(-k * diff))
 
     # Assign a confidence percentage to each category
-    if score >= threshold:
-        true_confidence = confidence
+    if prob >= norm_threshold:
+        true_confidence = prob
     else:
-        true_confidence = 1 - confidence
+        true_confidence = (1 - prob) 
 
     return true_confidence*100
     
@@ -110,9 +120,9 @@ def run_aasist(file_path):
         with torch.no_grad():
             _, batch_out = model(batch_x)
             batch_score = (batch_out[:, 1]).data.cpu().numpy().ravel()
-            print("the score is", batch_score.tolist())
-            print("the score is", batch_score[0])
-            confidence = get_confidence(batch_score[0], threshold)
+            # print("the score is", batch_score.tolist())
+            # print("the score is", batch_score[0])
+            confidence = get_confidence(batch_score[0])
             if batch_score > threshold:
                 return "Fake", confidence
             else:
