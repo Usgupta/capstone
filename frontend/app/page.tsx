@@ -12,7 +12,6 @@ export default  function Home() {
   const [file, setFile] = useState<File | null>(null);
   const [selected, setSelected] = useState("");
 
-
   const router = useRouter();
 
   const formData = new FormData();

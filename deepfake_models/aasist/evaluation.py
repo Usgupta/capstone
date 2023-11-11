@@ -46,6 +46,8 @@ def calculate_tDCF_EER(cm_scores_file,
     # Extract target, nontarget, and spoof scores from the ASV scores
     tar_asv = asv_scores[asv_keys == 'target']
     non_asv = asv_scores[asv_keys == 'nontarget']
+    
+
     spoof_asv = asv_scores[asv_keys == 'spoof']
 
     # Extract bona fide (real human) and spoof scores from the CM scores

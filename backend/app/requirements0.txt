@@ -127,3 +127,13 @@ webencodings==0.5.1
 websocket-client==1.5.1
 websockets==12.0
 widgetsnbextension==4.0.5
+fastapi
+uvicorn
+sqlalchemy 
+soundfile
+torch
+torchvision
+tensorboard
+packaging
+torchcontrib
+
