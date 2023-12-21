@@ -47,7 +47,8 @@ def read_root():
 
 @app.post("/run/")
 def run_model(file: UploadFile = File(...)):
-    result, confidence = run_aasit(file.file)
+    print("here")
+    result, confidence = run_aasist(file.file)
 # RedirectResponse(url=f"http://localhost:3000/results?confidence={confidence}")
 # {"confidence":{confidence}}
     return {"confidence":{confidence}, "result":{result}}
@@ -79,6 +80,7 @@ f = "/Users/user/capstone/deepfake_models/aasist/LA_E_1000147.flac"
 
 def run_aasist(file_path):
     return inference.run_aasist(file_path=file_path)
+
 if __name__ == "__main__":
     import uvicorn
     uvicorn.run(app, host="0.0.0.0", port=8000)
