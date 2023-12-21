@@ -1,6 +1,6 @@
 from typing import List
 
-from fastapi import Depends, FastAPI, HTTPException, File, UploadFile
+from fastapi import Depends, FastAPI, HTTPException, File, UploadFile, Form
 from sqlalchemy.orm import Session
 
 import crud, models, schemas
@@ -10,6 +10,7 @@ from fastapi.responses import RedirectResponse
 from fastapi.middleware.cors import CORSMiddleware
 import sys
 sys.path.insert(0, '../../')
+from deepfake_models.get_inference_model import get_inference_model
 import deepfake_models.aasist.inference as inference
 
 app = FastAPI()
@@ -46,9 +47,10 @@ def read_root():
     return {"message": "Hello, FastAPI!"}
 
 @app.post("/run/")
-def run_model(file: UploadFile = File(...)):
-    print("here")
-    result, confidence = run_aasist(file.file)
+def run_model( option: str = Form(...), file: UploadFile = File(...), ):
+    print(option)
+    inference_model = get_inference_model(option)
+    result, confidence = inference_model.run(file.file)
 # RedirectResponse(url=f"http://localhost:3000/results?confidence={confidence}")
 # {"confidence":{confidence}}
     return {"confidence":{confidence}, "result":{result}}

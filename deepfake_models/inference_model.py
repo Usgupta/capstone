@@ -3,5 +3,5 @@ class InferenceModel:
         self.name = name
         self.inference_function = inference_function
 
-    def run(self):
-        return self.inference_function()
+    def run(self, file_path):
+        return self.inference_function(file_path)
