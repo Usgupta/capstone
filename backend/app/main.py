@@ -48,7 +48,6 @@ def read_root():
 
 @app.post("/run/")
 def run_model( option: str = Form(...), file: UploadFile = File(...), ):
-    print(option)
     inference_model = get_inference_model(option)
     result, confidence = inference_model.run(file.file)
 # RedirectResponse(url=f"http://localhost:3000/results?confidence={confidence}")
