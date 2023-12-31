@@ -22,12 +22,18 @@ from deepfake_models.aasist import models
 import deepfake_models.aasist.models.AASIST as aasist
 device = torch.device("cpu")
 
+model_path= "../../deepfake_models/aasist/models/weights/AASIST.pth"
+
+# model.load_state_dict(
+            # torch.load(config["model_path"], map_location=device))
+
 def get_model(model_config: Dict, device: torch.device):
     """Define DNN model architecture"""
     module = aasist
     # module = import_module("models.{}".format(model_config["architecture"]))
     _model = getattr(module, "Model")
     model = _model(model_config).to(device)
+    model.load_state_dict(torch.load(model_path, map_location=device))
     nb_params = sum([param.view(-1).size()[0] for param in model.parameters()])
     print("no. model params:{}".format(nb_params))
 
@@ -104,8 +110,12 @@ def run_aasist(file_path):
         with torch.no_grad():
             _, batch_out = model(batch_x)
             batch_score = (batch_out[:, 1]).data.cpu().numpy().ravel()
+            print("the score is", batch_score.tolist())
+            print("the score is", batch_score[0])
             confidence = get_confidence(batch_score[0], threshold)
             if batch_score > threshold:
                 return "Fake", confidence
             else:
                 return "Real", confidence
+            
+# run_aasist('LA_E_243156.flac')
