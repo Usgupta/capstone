@@ -1,10 +1,10 @@
 [94m-------------------------------------------------[0m
-[94m---  Start program 2024-01-01 16:58:00.637903 ---[0m
+[94m---  Start program 2024-01-01 17:44:15.674236 ---[0m
 [94m-------------------------------------------------[0m
 [94mLoad module: config[0m
 [94mLoad module: model[0m
 [94m---------------------------------------------------------------------[0m
-[94m---  Loading dataset asvspoof2019_test 2024-01-01 16:58:01.066303 ---[0m
+[94m---  Loading dataset asvspoof2019_test 2024-01-01 17:44:16.093663 ---[0m
 [94m---------------------------------------------------------------------[0m
 [94mSkip scanning directories[0m
 [94mRead sequence info: ./asvspoof2019_test_utt_length.dic[0m
@@ -107,6 +107,6 @@ Parameter number: 275968
 [94mGenerate minibatch indexed within [0,1)[0m
 Output, LA_E_2431656, 0, -0.006744
 [91mNo output saved: ('0,LA_E_2431656,0,27443,0',)[0m
-Generating 1, 0,LA_E_2431656,0,27443,0, time cost: 1.620s
-[94mInference time cost: 1.620097s[0m
+Generating 1, 0,LA_E_2431656,0,27443,0, time cost: 1.573s
+[94mInference time cost: 1.572748s[0m
 [94mOutput data has been saved to ./output[0m

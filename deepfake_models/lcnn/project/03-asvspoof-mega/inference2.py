@@ -48,7 +48,7 @@ if __name__ == "__main__":
     if filename:
         update_test_lst(filename)
         update_protocol_txt(filename)
-        print("Files updated successfully.")
+        # print("Files updated successfully.")
 
 
 def lcnn_inference():
