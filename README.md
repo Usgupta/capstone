@@ -2,7 +2,7 @@
 
 ### Packages
 
-`pip install uvicorn`
+`pip install uvicorn fastapi`
 
 
 ### Frontend
@@ -10,7 +10,9 @@
 1. change to frontend directory 
 `cd frontend`
 
-2. run the nextjs app
+2. install packages `npm i`
+
+3. run the nextjs app
     `npm run dev`
 
 note: if you see the error `next` not installed, install it by running `npm i next`
