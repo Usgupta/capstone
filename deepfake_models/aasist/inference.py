@@ -88,7 +88,6 @@ def get_confidence(score):
     norm_threshold = 0.3888572108980983
     # diff = score - threshold
     # confidence = 1 / (1 + np.exp(-k * diff))
-
     # Assign a confidence percentage to each category
     if prob >= norm_threshold:
         true_confidence = prob
