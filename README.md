@@ -44,19 +44,19 @@ git clone https://github.com/Usgupta/capstone.git
 ```
 ### Working on a new feature
 
-When working on a new feature, create a **new branch** first with the following format `<name>-<featurename>` and commands:
+When working on a new feature, create a **new branch** from dev first with the following format `<name>-<featurename>` and commands:
 ```
-# Get updated main branch
-git checkout main
-git pull origin main
+# Get updated dev branch
+git checkout dev
+git pull origin dev
 
 # Create new branch
-git checkout -b <backend/frontend/AI>-<featurename>
+git checkout -b <backend/frontend/AI>-<featurename> dev
 
 # Example
-git checkout main
-git pull origin main
-git checkout -b AI-rawgat-confidencescores
+git checkout dev
+git pull origin dev
+git checkout -b AI-rawgat-confidencescores dev
 ```
 
 ### Commiting and Pushing your changes
@@ -83,8 +83,8 @@ git push origin AI-rawgat-confidencescores
 git push origin frontend-homepage
 ```
 
-Submit a Pull Request (PR) to the `main` branch using the GitHub website
+Submit a Pull Request (PR) to the `dev` branch using the GitHub website. Test the complete workflow, including the frontend and backend to ensure all workflows before and after your changes are working
 ```
 Repo main page > Pull requests > New pull request
 ```
-The `base` branch should be `dev` and the `compare` branch should be your branch.
+The `base` branch should be `dev` and the `compare` branch should be your branch. Make sure there are no merge conflicts. Github will show ready to merge if there are no conflicts. 
