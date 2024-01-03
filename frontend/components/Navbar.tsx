@@ -1,8 +1,9 @@
 import Link from "next/link";
+import LightDarkToggle from "./LightDarkToggle";
 
 export default function Navbar() {
 	return (
-		<nav className="w-full z-20 top-0 left-0">
+		<nav className="w-full z-20 top-0 left-0 fixed bg-white/50 border-b border-gray-200 backdrop-filter backdrop-blur-lg dark:bg-coldHeights-900">
 			<div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
 				<div className="flex items-center">
 					<img src="https://www.htx.gov.sg/images/default-source/htx-image-library/who-we-are_why-we-exist_logoe20dfc9c67824b68ba78e31fb41f5c9f.png?sfvrsn=c4524eb2_0" className="h-16 mr-3"></img>
@@ -10,9 +11,10 @@ export default function Navbar() {
 				</div>
 				<div className="flex justify-between max-xs:hidden">
 					<ul className="font-medium flex p-0 flex-row mt-0 border-0">
-						<li><Link href="/" className="block hover:bg-transparent border-0 hover:text-blue-700 p-0 dark:hover:text-blue-500 dark:hover:bg-transparent">Home</Link></li>	
-						<li><Link href="/about" className="block ml-[40px] hover:bg-transparent border-0 hover:text-blue-700 p-0 dark:hover:text-blue-500 dark:hover:bg-transparent">About</Link></li>
-						<li><Link href="/whoarewe" className="block ml-[40px] hover:bg-transparent border-0 hover:text-blue-700 p-0 dark:hover:text-blue-500 dark:hover:bg-transparent">Who are we</Link></li>
+						<li><Link href="/about" className="block hover:bg-transparent border-0 hover:text-blue-700 p-0 dark:hover:text-blue-500 dark:hover:bg-transparent">About</Link></li>	
+						<li><Link href="/detect" className="block ml-[40px] hover:bg-transparent border-0 hover:text-blue-700 p-0 dark:hover:text-blue-500 dark:hover:bg-transparent">Detect</Link></li>
+						<li><Link href="/login" className="block ml-[40px] hover:bg-transparent border-0 hover:text-blue-700 p-0 dark:hover:text-blue-500 dark:hover:bg-transparent">Login</Link></li>
+						<li><LightDarkToggle /></li>
 					</ul>
 				</div>
 				<div className="dropdown dropdown-bottom dropdown-end min-xs:hidden">
@@ -25,9 +27,9 @@ export default function Navbar() {
 						</svg>
 					</label>
 					<ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
-						<li><Link href="/">Home</Link></li>	
 						<li><Link href="/about">About</Link></li>
-						<li><Link href="/whoarewe">Who are we</Link></li>
+						<li><Link href="/detect">Detect</Link></li>
+						<li><Link href="/login">Login</Link></li>
 					</ul>
 				</div>
 			</div>
