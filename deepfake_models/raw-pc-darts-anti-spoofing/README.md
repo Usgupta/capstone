@@ -18,8 +18,7 @@ Replace the path to the data in the `evaluate.py/train_model.py/train_search.py`
 
 When evaluating, theres 2 pretrained models that I have downloaded from the GitHub and stored in the folder called pretrained. One is called fix_mel.pth and the other is called learn_linear.pth. I set the default model to be the fix_mel.pth pretrained model in evaluate.py. I Also set the default model architecture to fix_mel's architecture. The architecture should not be a file path but the string from the text file instead.
 
-Before running, you need to make sure that your LA folder is organised like how the GitHub shows. The LA folder is too big to upload
-so you will have to figure out this one yourself :smile:
+Before running, you need to make sure that your LA folder is organised like how the original GitHub shows (see below). The LA folder is too big to upload, so you will have to figure out this one yourself :smile:
 
 Just run `python evaluate.py` inside the conda environment to perform evaluation on the pretrained fix_mel model. 
 

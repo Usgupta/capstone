@@ -21,7 +21,7 @@ from func.p2sgrad import P2SGradLoss
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser('ASVSpoof2019 model')
-    parser.add_argument('--data', type=str, default='D:/CZ Documents/SUTD/Capstone/LA', 
+    parser.add_argument('--data', type=str, default='/path/to/your/data', 
                     help='location of the data corpus')          
     parser.add_argument('--valid_freq', type=int, default=1, help='validate frequency')
     parser.add_argument('--report_freq', type=int, default=1000, help='report frequency in training')

@@ -12,7 +12,7 @@ from ASVRawDataset import ASVRawDataset
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser('ASVSpoof2019 model')
-    parser.add_argument('--data', type=str, default='D:/CZ Documents/SUTD/Capstone/LA', 
+    parser.add_argument('--data', type=str, default='/path/to/your/data', 
                     help='location of the data corpus')   
     parser.add_argument('--model', type=str, default='./pretrained/fix_mel.pth')
     parser.add_argument('--layers', type=int, default=8)
