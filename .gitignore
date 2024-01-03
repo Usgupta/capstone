@@ -1,2 +1,7 @@
 
 backend/app/__pycache__/
+deepfake_models/__pycache__
+deepfake_models/aasist/__pycache__
+deepfake_models/rawgat-st/__pycache__
+
+
