@@ -56,29 +56,21 @@ rm -r __tmp
 MODEL=lfcc-lcnn-lstmsum-p2s/01
 cd ${MODEL}
 
-# echo -e "\n${RED}Use model ${MODEL}${NC}"
-# cp ${MAINSCRIPT} ./inference.py
-# cp ${CONFIGSCRIPT} ./config.py
-# # Copy cached files that logs utterance duration. This saves time
-# # It is also OK to skip this step, and the code will generate them
-# cp ${CONVDIR}/* ./
-
-
-
 #############
-# step 2. run pre-trained model by Xin and compute EER
+# Run pre-trained model, compute EER
 # echo -e "\n${RED}=======================================================${NC}"
 # echo -e "${RED}Step2. run pre-trained ${MODEL} on eval set using your GPU server${NC}"
 # echo -e "The job will run in background for ~20 minutes. Please wait."
 # echo -e "(Model ${MODEL} was trained on NII's server.)"
 
-LOGFILE=log_inference
-python inference.py --inference --model-forward-with-file-name --trained-model __pretrained/trained_network.pt > ${LOGFILE} 2>${LOGFILE}_err
-VALUE=$(grep 'Output,' ${LOGFILE} | awk -F ', ' '{print $4}')
+# # Extract the desired value AND save a log file
+# LOGFILE=log_inference
+# python inference_wrapper.py --inference --model-forward-with-file-name --trained-model __pretrained/trained_network.pt > ${LOGFILE} 2>${LOGFILE}_err
+# VALUE=$(grep 'Output,' ${LOGFILE} | awk -F ', ' '{print $4}')
 
-# Extract the desired value without saving a log file
-# VALUE=$(python inference.py --inference --model-forward-with-file-name \
-# --trained-model __pretrained/trained_network.pt | grep 'Output,' | awk -F ', ' '{print $4}')
+# # Extract the desired value without saving a log file
+VALUE=$(python inference_wrapper.py --inference --model-forward-with-file-name \
+--trained-model __pretrained/trained_network.pt | grep 'Output,' | awk -F ', ' '{print $4}')
 
 # Print the extracted value
 echo "Extracted Score: ${VALUE}"
