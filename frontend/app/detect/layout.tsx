@@ -1,4 +1,4 @@
-export default function WhoareweLayout({
+export default function DetectLayout({
     children,
   }: {
     children: React.ReactNode
