@@ -10,8 +10,8 @@ const config: Config = {
   theme: {
     extend: {
       screens: {
-        'max-xs': {'max': '590px'},
-        'min-xs': {'min': '590px'},
+		'max-sm': {'max': '640px'},
+        'min-sm': {'min': '641px'},
       },
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
@@ -23,7 +23,7 @@ const config: Config = {
 					light: "#f2f2e6",
 					dark: "#000000"
 				},
-				white: {
+				whitehue: {
 					50: "#faf4ef",
 					100: "#fff9f5",
 					200: "#fffaf8",
