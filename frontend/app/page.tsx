@@ -1,72 +1,28 @@
-'use client'
-
-// Components
-import Dropdown from '@/components/Dropdown'
-import Uploadfile from '../components/Uploadfile'
-import { useState, ChangeEvent } from "react";
-import { useSearchParams,useRouter } from 'next/navigation';
-import Link from 'next/link';
-
-
-export default  function Home() {
-  const [file, setFile] = useState<File | null>(null);
-  const [selected, setSelected] = useState("");
-
-  const router = useRouter();
-
-  const formData = new FormData();
-  if (file!=null){
-    formData.append('file',file);
-  }
-  // formData.append('option', selectedOption); // Include the selected option
-
-  const handleFileUpload = async () => {
-    if (file==null) {
-      alert('Please upload a file.');
-      return;
-    }
-
-    console.log(selected)
-
-    const formData = new FormData();
-    formData.append('file', file);
-    formData.append('option', selected); // Include the selected option
-
-    try {
-      const response = await fetch('http://127.0.0.1:8000/run/', {
-        method: 'POST',
-        body: formData,
-      });
-      if (response.ok) {
-        console.log('File uploaded successfully!');
-
-        // const params = new URLSearchParams(useSearchParams());
-
-        const result = await response.json();
-
-        const resultsPageURL = `/results?confidence=${result.confidence}&result=${result.result}`;
-
-        router.push(resultsPageURL);
-  
-        //   result
-        // })
-
-
-      } else {
-        console.error('Failed to upload file');
-      }
-    } catch (error) {
-      console.error(error);
-    }
-  };
+export default function HomePage() {
 
   return (
-    <main className='flex flex-col justify-center items-center h-[580px] mt-6'>
-      <Uploadfile file={file} setFile={setFile}  />
-      <div className='flex justify-between mt-10'>
-        <Dropdown selected={selected} setSelected={setSelected}/>
-        <button className='bg-blue-300 btn ml-5 min-h-min h-[41px] rounded-lg' onClick={handleFileUpload}>Run</button>
-      </div>
+    <main>
+      <section className="h-screen w-4/5 mx-auto flex flex-col justify-center items-center">
+        <h1 className="xl:text-9xl lg:text-7xl md:text-5xl sm:text-3xl text-center font-semibold py-20">
+          Welcome to Audio Deepfake Detection
+        </h1>
+        <button className="bg-gray-200 hover:bg-gray-300 rounded-xl text-4xl font-semibold py-4 xl:px-64 lg:px-32 md:px-16 sm:px-8 transition-colors">Get Started</button>
+      </section>
+      <section className="h-screen w-4/5 mx-auto flex flex-col justify-center items-center">
+        <h1 className="text-6xl text-center">
+          We provide a
+          <span className="bg-gradient-to-r from-purple-600 to-cyan-400 text-transparent bg-clip-text"> quick </span> 
+          and
+          <span className="bg-gradient-to-r from-purple-600 to-cyan-400 text-transparent bg-clip-text"> easy </span>
+          way for you to detect deepfake audios.
+        </h1>
+      </section>
+      <section className="h-screen w-4/5 mx-auto flex flex-col justify-center items-center">
+        <h1 className="text-4xl text-center">
+          We work with <span className="underline">Singapore HTX</span>
+          , providing a range of models for you to choose from.
+        </h1>
+      </section>
     </main>
   )
 }
