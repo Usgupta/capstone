@@ -4,7 +4,7 @@ export default function LoadingLayout({
     children: React.ReactNode
   }) {
     return (
-      <main>
+      <main className="z-50 bg-whitehue-600 w-screen h-screen flex items-center justify-center relative">
         {children}
       </main>
     )

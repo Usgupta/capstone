@@ -1,24 +1,27 @@
 import type { Config } from 'tailwindcss'
+import type { PluginAPI } from "tailwindcss/types/config";
+
+const plugin = require('tailwindcss/plugin')
 
 const config: Config = {
-  content: [
-    './pages/**/*.{js,ts,jsx,tsx,mdx}',
-    './components/**/*.{js,ts,jsx,tsx,mdx}',
-    './app/**/*.{js,ts,jsx,tsx,mdx}',
-  ],
-  darkMode: 'class',
-  theme: {
-    extend: {
-      screens: {
-		'max-sm': {'max': '640px'},
-        'min-sm': {'min': '641px'},
-      },
-      backgroundImage: {
-        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
-        'gradient-conic':
-          'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
-      },
-      colors: {
+	content: [
+		'./pages/**/*.{js,ts,jsx,tsx,mdx}',
+		'./components/**/*.{js,ts,jsx,tsx,mdx}',
+		'./app/**/*.{js,ts,jsx,tsx,mdx}',
+	],
+	darkMode: 'class',
+	theme: {
+		extend: {
+			screens: {
+				'max-sm': { 'max': '640px' },
+				'min-sm': { 'min': '641px' },
+			},
+			backgroundImage: {
+				'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
+				'gradient-conic':
+					'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
+			},
+			colors: {
 				theme: {
 					light: "#f2f2e6",
 					dark: "#000000"
@@ -72,10 +75,29 @@ const config: Config = {
 					900: "#382c3a",
 				},
 			},
-    },
-  },
-  plugins: [
-    require("daisyui")
-  ],
+			keyframes: {
+				soundwave: {
+					'50%': { height: '20%' },
+					'100%': { height: '100%' },
+				},
+			},
+			animation: {
+				soundwave: 'soundwave 1.2s linear infinite',
+			}
+		},
+	},
+	plugins: [
+		require("daisyui"),
+		plugin(function ({ matchUtilities, theme }: { matchUtilities : PluginAPI["matchUtilities"], theme : PluginAPI["theme"] }) {
+			matchUtilities(
+			  {
+				'animate-delay': (value) => ({
+				  animationDelay: value,
+				}),
+			  },
+			  { values: theme('transitionDelay') }
+			)
+		  }),
+	],
 }
 export default config
