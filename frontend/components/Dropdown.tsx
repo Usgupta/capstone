@@ -2,7 +2,12 @@ import React, { useRef, useState, useEffect } from "react";
 import { BiChevronDown } from "react-icons/bi";
 import { AiOutlineSearch } from "react-icons/ai";
 
-const Selector = ({ selected, setSelected }) => {
+type Props = {
+  selected: string,
+  setSelected: Function,
+}
+
+const Selector = ({ selected, setSelected }: Props) => {
   const [models, setModels] = useState(["aasist", "RAWGAT", "LCNN"]);
   const [inputValue, setInputValue] = useState("");
   const [open, setOpen] = useState(false);
@@ -17,7 +22,8 @@ const Selector = ({ selected, setSelected }) => {
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
-      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+      // Closes only if not clicking on the same div (div already has an onClick event) or an input tag.  
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node) && !((event.target as HTMLElement).tagName === 'INPUT')) {
         setOpen(false);
       }
     };
@@ -34,7 +40,7 @@ const Selector = ({ selected, setSelected }) => {
   }, [open]);
 
   return (
-    <div className="w-72 font-medium h-80">
+    <div className="w-72 font-medium h-40">
       <div
         ref={dropdownRef}
         onClick={() => setOpen(!open)}
@@ -47,7 +53,7 @@ const Selector = ({ selected, setSelected }) => {
         )}
         <BiChevronDown size={20} className={`${open && "rotate-180"}`} />
       </div>
-      <ul className={`bg-gray-200 mt-1 overflow-y-auto ${open ? "max-h-60" : "max-h-0"}`}>
+      <ul className={`bg-gray-200 mt-1 overflow-y-auto rounded-lg ${open ? "max-h-60" : "max-h-0"}`}>
         <div className="bg-gray-200 flex items-center px-2 sticky top-0">
           <AiOutlineSearch size={18} className="text-gray-700" />
           <input
