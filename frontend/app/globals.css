@@ -2,6 +2,19 @@
 @tailwind components;
 @tailwind utilities;
 
-.btn{
+.btn {
   text-transform: none;
+}
+
+.dark .active {
+  background-image: linear-gradient(#de5dff, #2fc9ff);
+}
+
+.active {
+  background-image: linear-gradient(#9333ea, #28b8cf);
+  background-size: 100%;
+  -webkit-background-clip: text;
+  -moz-background-clip: text;
+  -webkit-text-fill-color: transparent; 
+  -moz-text-fill-color: transparent;
 }
