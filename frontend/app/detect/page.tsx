@@ -35,20 +35,15 @@ export default function DetectPage() {
         method: 'POST',
         body: formData,
       });
+
       if (response.ok) {
         console.log('File uploaded successfully!');
-
-        // const params = new URLSearchParams(useSearchParams());
 
         const result = await response.json();
 
         const resultsPageURL = `/results?confidence=${result.confidence}&result=${result.result}`;
 
         router.push(resultsPageURL);
-  
-        //   result
-        // })
-
 
       } else {
         console.error('Failed to upload file');
@@ -59,12 +54,12 @@ export default function DetectPage() {
   };
 
   return (
-    <main className='flex flex-col justify-center items-center h-[580px] mt-6'>
+    <>
       <Uploadfile file={file} setFile={setFile}  />
       <div className='flex justify-between mt-10'>
         <Dropdown selected={selected} setSelected={setSelected}/>
         <button className='bg-blue-300 btn ml-5 min-h-min h-[41px] rounded-lg' onClick={handleFileUpload}>Run</button>
       </div>
-    </main>
+    </>
   )
 }

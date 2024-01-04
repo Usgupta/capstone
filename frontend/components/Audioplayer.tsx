@@ -116,8 +116,8 @@ export default function Audioplayer({ audioFile, resetBtn }: Props) {
     return (
         <div className="relative w-[600px] shadow-md rounded-md overflow-hidden">
             {/* <div className="absolute top-2 left-2">The name of the track</div> */}
-            <div id="waveform" className="bg-gray-200 w-full" ref={waveformRef}></div>
-            <div className="buttons flex">
+            <div id="waveform" className="bg-gray-200 dark:bg-gray-600 w-full" ref={waveformRef}></div>
+            <div className="buttons flex dark:bg-gray-300">
                 <button onClick={handlePlayPause} className="mr-2 w-6 p-4 cursor-pointer inline-block">
                     {playing ? <FaPause /> : <FaPlay />}
                 </button>
