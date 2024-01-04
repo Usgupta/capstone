@@ -31,7 +31,7 @@ export default function Uploadfile({ file, setFile }: { file: File | null; setFi
                 <Audioplayer audioFile={file} resetBtn={handleResetBtn} /> :
                 (<Dropzone onDropAccepted={handleFileChange} accept={{ 'audio/wav': [], 'audio/flac': [] }}>
                     {({ getRootProps, getInputProps }) => (
-                        <label className="flex w-full h-full transition bg-white border-2 border-gray-300 border-dashed rounded-md appearance-none cursor-pointer hover:border-gray-400 focus:outline-none">
+                        <div className="flex w-full h-full transition bg-white border-2 border-gray-300 border-dashed rounded-md appearance-none cursor-pointer hover:border-gray-400 focus:outline-none">
                             <div className="flex justify-center items-center space-x-2 w-full h-full" {...getRootProps()}>
                                 <input {...getInputProps()} />
                                 <svg xmlns="http://www.w3.org/2000/svg" className="w-6 h-6 text-gray-600" fill="none" viewBox="0 0 24 24"
@@ -41,7 +41,7 @@ export default function Uploadfile({ file, setFile }: { file: File | null; setFi
                                 </svg>
                                 <span className="font-medium text-gray-600">Click to upload or drag and drop</span>
                             </div>
-                        </label>
+                        </div>
                     )}
                 </Dropzone>)}
         </div>
