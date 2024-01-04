@@ -73,8 +73,8 @@ VALUE=$(python inference_wrapper.py --inference --model-forward-with-file-name \
 --trained-model __pretrained/trained_network.pt | grep 'Output,' | awk -F ', ' '{print $4}')
 
 # Print the extracted value
-echo "Extracted Score: ${VALUE}"
-
+# echo "Extracted Score: ${VALUE}"
+echo $VALUE
 
 #############
 # echo -e "\n${RED}This is the result using pre-trained model on your GPU ${NC}"

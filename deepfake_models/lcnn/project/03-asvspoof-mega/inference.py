@@ -53,7 +53,28 @@ if __name__ == "__main__":
 
 
 def lcnn_inference():
-    cwd = os.path.dirname(os.path.abspath(__file__))
+    cwd = os.path.dirname(os.path.realpath(__file__))
+    # print(cwd)
+
+    # Add relative paths to the system path
+    # lcnn_path = os.path.join(cwd, '..', '..')
+    # project_path = os.path.join(cwd, '..')
+    # core_scripts_path = os.path.join(cwd, '..', '..', 'core_scripts')
+    # model_path = os.path.join(cwd, 'lfcc-lcnn-lstmsum-p2s/01')
+    # pretrained_path = os.path.join(cwd, 'lfcc-lcnn-lstmsum-p2s/01/__pretrained')
+
+    # paths = [cwd, lcnn_path, project_path, core_scripts_path, model_path, pretrained_path]
+
+    # paths = [
+    # os.path.abspath(os.path.join(cwd, "../../")),
+    # os.path.abspath(os.path.join(cwd, "../")),
+    # os.path.abspath(os.path.join(cwd, "../../core_scripts/")),
+    # os.path.abspath(os.path.join(cwd, "lfcc-lcnn-lstmsum-p2s/01/")),
+    # os.path.abspath(os.path.join(cwd, "lfcc-lcnn-lstmsum-p2s/01/__pretrained/"))]
+
+    # # add paths to PYTHONPATH
+    # os.environ["PYTHONPATH"] = ":".join(paths) + ":" + os.environ.get("PYTHONPATH", "")
+
 
     # Run the shell script with Bash
     result = subprocess.run(['bash', 'inference.sh'], capture_output=True, text=True, cwd=cwd)
@@ -63,7 +84,7 @@ def lcnn_inference():
     # Check the return code to see if the command was successful
     if result.returncode == 0:
         output = result.stdout
-        print(output)
+        # print(output)
         return output
     else:
         print("Error:", result.stderr)
