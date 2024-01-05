@@ -168,7 +168,7 @@ def main():
             checkpoint = torch.load("%s%s" % (args.save_trained_name,
                                               args.save_model_ext))
         else:
-            checkpoint = torch.load(args.trained_model)
+            checkpoint = torch.load(args.trained_model, map_location=device)
 
         # do inference and output data
         
