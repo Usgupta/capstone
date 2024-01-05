@@ -70,18 +70,23 @@ if __name__ == '__main__':
     parser.add_argument('--eval', type=str, default='e', help='to use eval or dev')
     parser.set_defaults(is_mask=False)
     parser.set_defaults(is_trainable=False)
+
+    # Check if CUDA is available, otherwise use CPU
+    device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+
     
     # Get the command line arguments
     args = parser.parse_args()
     
-    # Load and setup the pretrained model for inference 
-    checkpoint = torch.load(args.model)
+    # Load and setup the pretrained model for inference
+    checkpoint = torch.load(args.model, map_location=device)  # Map the model to CPU
     genotype = eval(args.arch)
     OUTPUT_CLASSES = 2
     model = Network(args.init_channels, args.layers, args, OUTPUT_CLASSES, genotype)
     model.drop_path_prob = 0.0
-    model = model.cuda()
+    # model = model.cuda()  # Remove this line as we are using CPU
     model.load_state_dict(checkpoint)
+
     
     # Convert single audio clip to AudioFile object
     audiofile = AudioFile(args.filename)
@@ -100,7 +105,8 @@ if __name__ == '__main__':
     # Feed the audio data into the model and perform inference
     with torch.no_grad():
         for step, input in tqdm(enumerate(eval_loader)):
-            input = input.cuda(non_blocking=True).float()
+            input = input.to(device).float()
+            # input = input.cuda(non_blocking=True).float()
             output = model(input)
             output = model.forward_classifier(output)
             prediction = F.relu(output) 

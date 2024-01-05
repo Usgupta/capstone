@@ -1,0 +1,17 @@
+name: rawpc
+channels:
+  - pytorch
+  - conda-forge
+  - defaults
+dependencies:
+  - python=3.8
+  - numpy=1.20
+  - scipy=1.6.2
+  - pytorch=1.8.1
+  - torchvision=0.9.1
+  - scikit-learn=0.24.2
+  - librosa=0.8.0
+  - tqdm=4.60.0
+  - tensorboardx=2.4
+  - six=1.16.0
+  - protobuf=3.20.*

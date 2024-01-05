@@ -1,8 +1,10 @@
 # READ THIS FIRST
+
+
 Before you start, create a new conda environment with the following command:
 ```
-conda create -n rawpc python=3.8.8
-```
+conda env create -f environment.yml          ```
+
 The original rawpc GitHub stated that it used CUDA 11.2, but from what I could find, pytorch 1.8.1 is only compatible with CUDA 11.1 not 11.2. I forced the installation of pytorch and torchvision to be the CUDA compatible version so it will not download the CPU version instead. However, the CUDA version might not be compatible with your hardware so please check that first. Also added six and protobuf packages as they were needed to run the model.
 
 Activate the conda environment with the following command:
@@ -10,10 +12,7 @@ Activate the conda environment with the following command:
 conda activate rawpc
 ```
 
-Install the required dependencies with the following command while in the conda environment:
-```
-pip install -r requirements.txt
-``` 
+
 Replace the path to the data in the `evaluate.py/train_model.py/train_search.py` with your own path to the data.
 
 When evaluating, theres 2 pretrained models that I have downloaded from the GitHub and stored in the folder called pretrained. One is called fix_mel.pth and the other is called learn_linear.pth. I set the default model to be the fix_mel.pth pretrained model in evaluate.py. I Also set the default model architecture to fix_mel's architecture. The architecture should not be a file path but the string from the text file instead.
