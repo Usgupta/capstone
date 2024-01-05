@@ -3,7 +3,8 @@
 
 Before you start, create a new conda environment with the following command:
 ```
-conda env create -n rawpc python=3.8        ```
+conda create -n rawpc python=3.8        
+```
 
 The original rawpc GitHub stated that it used CUDA 11.2, but from what I could find, pytorch 1.8.1 is only compatible with CUDA 11.1 not 11.2. I forced the installation of pytorch and torchvision to be the CUDA compatible version so it will not download the CPU version instead. However, the CUDA version might not be compatible with your hardware so please check that first. Also added six and protobuf packages as they were needed to run the model.
 
@@ -15,13 +16,12 @@ conda activate rawpc
 Install the packages, before installing run `which python` and `which pip` to see if they are using python and pip is using anaconda path and not your local/global installation
 
 ```
-pip install requirements.txt 
+python -m pip install requirements.txt 
 ```
-or for mac
+or for intel mac (installs packages without cuda)
 ```
-pip install requirements-mac.txt 
+python -m pip install requirements-mac.txt 
 ```
-
 
 Replace the path to the data in the `evaluate.py/train_model.py/train_search.py` with your own path to the data.
 
