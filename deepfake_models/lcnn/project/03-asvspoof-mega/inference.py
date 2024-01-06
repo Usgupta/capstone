@@ -54,7 +54,7 @@ if __name__ == "__main__":
 
 def lcnn_inference():
     cwd = os.path.dirname(os.path.realpath(__file__))
-    # print(cwd)
+    print(cwd)
 
     # Add relative paths to the system path
     # lcnn_path = os.path.join(cwd, '..', '..')

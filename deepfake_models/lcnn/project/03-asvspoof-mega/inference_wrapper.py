@@ -44,6 +44,8 @@ def main():
     nii_startup.set_random_seed(args.seed, args)
     use_cuda = not args.no_cuda and torch.cuda.is_available()
     device = torch.device("cuda" if use_cuda else "cpu")
+    print('device is',device)
+    print('device damn')
 
     # prepare data io    
     if not args.inference:
@@ -174,8 +176,9 @@ def main():
         
         # The 'model' argument below is the 'pt_model' argument in nn_manager.py
         # See line 713 of nn_manager.py
-        nii_nn_wrapper.f_inference_wrapper(args, model, device, \
-                                           test_set, checkpoint)
+        print(device, "print device")
+        nii_nn_wrapper.f_inference_wrapper(args, model, torch.device('cpu'), \
+test_set, checkpoint)
         # print(x)
 
     # done
