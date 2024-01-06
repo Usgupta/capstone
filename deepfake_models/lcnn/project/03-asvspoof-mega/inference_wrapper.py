@@ -176,12 +176,9 @@ def main():
         
         # The 'model' argument below is the 'pt_model' argument in nn_manager.py
         # See line 713 of nn_manager.py
-        print(device, "print device")
         nii_nn_wrapper.f_inference_wrapper(args, model, device, \
 test_set, checkpoint)
-        # print(x)
 
-    # done
     return
 
 if __name__ == "__main__":

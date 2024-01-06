@@ -1,4 +1,4 @@
-name: pytorch-1.7-lcnn
+name: pytorchlcnn1
 channels:
   - pytorch
   - conda-forge
@@ -66,3 +66,4 @@ dependencies:
   - xz=5.4.5=h6c40b1e_0
   - zlib=1.2.13=h4dc903c_0
   - zstd=1.5.5=hc035e20_0
+prefix: /Users/usg1103/anaconda3/envs/pytorch-1.7-lcnn
