@@ -56,7 +56,7 @@ export default function Audioplayer({ audioFile, resetBtn }: Props) {
     const create = async () => {
         // Next.js dynamic import
         const WaveSurfer = (await import("wavesurfer.js")).default;
-        if(waveformRef.current){
+        if (waveformRef.current) {
             const options = formWaveSurferOptions(waveformRef.current);
             wavesurfer.current = WaveSurfer.create(options);
         }
@@ -114,21 +114,23 @@ export default function Audioplayer({ audioFile, resetBtn }: Props) {
     };
 
     return (
-        <div className="relative w-[600px] shadow-md rounded-md overflow-hidden">
+        <div className="relative w-full shadow-md rounded-md overflow-hidden">
             {/* <div className="absolute top-2 left-2">The name of the track</div> */}
             <div id="waveform" className="bg-gray-200 dark:bg-gray-600 w-full" ref={waveformRef}></div>
             <div className="buttons flex dark:bg-gray-300">
-                <button onClick={handlePlayPause} className="mr-2 w-6 p-4 cursor-pointer inline-block">
-                    {playing ? <FaPause /> : <FaPlay />}
-                </button>
-                <button onClick={handleStopButton} className="mr-2 w-6 p-4 cursor-pointer inline-block">
-                    <FaStop />
-                </button>
-                <button onClick={handleMuteUnmute} className="mr-2 w-6 p-4 cursor-pointer inline-block">
-                    {mute ? <FaVolumeXmark /> : <FaVolumeHigh />}
-                </button>
-                <input onChange={e => handleVolumeSlider(e)} className="w-[200px]" type="range" min="0" max="1" step="0.1" value={volume} />
-                <button className="ml-auto mr-6 font-medium hover:text-blue-700" onClick={resetBtn}>Reupload</button>
+                <div className="basis-4/5">
+                    <button onClick={handlePlayPause} className="mr-1 w-6 p-4 cursor-pointer inline-block">
+                        {playing ? <FaPause /> : <FaPlay />}
+                    </button>
+                    <button onClick={handleStopButton} className="mr-1 w-6 p-4 cursor-pointer inline-block">
+                        <FaStop />
+                    </button>
+                    <button onClick={handleMuteUnmute} className="mr-2 w-6 p-4 cursor-pointer inline-block">
+                        {mute ? <FaVolumeXmark /> : <FaVolumeHigh />}
+                    </button>
+                    <input onChange={e => handleVolumeSlider(e)} className="w-[42%] max-xs:w-4/5 max-xs:ml-4" type="range" min="0" max="1" step="0.1" value={volume} />
+                </div>
+                <button className="basis-1/5 px-4 font-medium hover:text-blue-700 max-sm:text-sm" onClick={resetBtn}>Reupload</button>
             </div>
         </div>
     )

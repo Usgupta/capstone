@@ -13,8 +13,11 @@ const config: Config = {
 	theme: {
 		extend: {
 			screens: {
+				'max-xs': { 'max': '436px' },
 				'max-sm': { 'max': '640px' },
 				'min-sm': { 'min': '641px' },
+				'max-md': { 'max': '896px' },
+				'max-lg': { 'max': '1024px' },
 			},
 			backgroundImage: {
 				'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
@@ -73,6 +76,14 @@ const config: Config = {
 					700: "#763ea2",
 					800: "#603f71",
 					900: "#382c3a",
+				},
+				bluehue: {
+					100: "#0fdeca",
+					200: "#00b3c5",
+					300: "#0087b4",
+					400: "#005b94",
+					500: "#153168",
+					600: "#210836"
 				},
 			},
 			keyframes: {

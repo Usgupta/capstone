@@ -17,7 +17,6 @@ const Selector = ({ selected, setSelected }: Props) => {
     setSelected(model);
     setOpen(false);
     setInputValue("");
-
   };
 
   useEffect(() => {
@@ -40,7 +39,7 @@ const Selector = ({ selected, setSelected }: Props) => {
   }, [open]);
 
   return (
-    <div className="w-72 font-medium h-40">
+    <div className="w-2/3 font-medium relative select-none cursor-default">
       <div
         ref={dropdownRef}
         onClick={() => setOpen(!open)}
@@ -51,11 +50,11 @@ const Selector = ({ selected, setSelected }: Props) => {
         ) : (
           "Select Model"
         )}
-        <BiChevronDown size={20} className={`${open && "rotate-180"}`} />
+        <BiChevronDown size={20} className={`${open && "rotate-180"}`} /> 
       </div>
-      <ul className={`bg-gray-200 mt-1 overflow-y-auto rounded-lg ${open ? "max-h-60" : "max-h-0"}`}>
-        <div className="bg-gray-200 flex items-center px-2 sticky top-0">
-          <AiOutlineSearch size={18} className="text-gray-700" />
+      <ul className={`bg-gray-200 overflow-y-auto rounded-lg ${open ? "absolute mt-1 w-full" : "max-h-0"}`}>
+        <search className="bg-gray-200 flex items-center px-2 sticky top-0">
+          <AiOutlineSearch size={18} className="text-gray-700 shrink-0" />
           <input
             type="text"
             value={inputValue}
@@ -63,7 +62,7 @@ const Selector = ({ selected, setSelected }: Props) => {
             placeholder="Enter model name"
             className="placeholder:text-gray-700 p-2 outline-none bg-gray-200"
           />
-        </div>
+        </search>
         {models.map((model: string) => (
           <li
             key={model}
