@@ -14,8 +14,13 @@ export default function DetectPage() {
   const router = useRouter();
 
   const handleFileUpload = async () => {
-    if (file == null) {
+    if (file === null) {
       alert('Please upload a file.');
+      return;
+    }
+
+    if (selected === "") {
+      alert('Please select a model from the dropdown.');
       return;
     }
 
@@ -24,7 +29,7 @@ export default function DetectPage() {
     const formData = new FormData();
     formData.append('file', file);
     formData.append('option', selected); // Include the selected option
-
+    
     try {
       const response = await fetch('http://127.0.0.1:8000/run/', {
         method: 'POST',
