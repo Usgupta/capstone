@@ -4,7 +4,7 @@ export default function ResultsLayout({
     children: React.ReactNode
   }) {
     return (
-      <main>
+      <main className="flex flex-col justify-center items-center min-h-screen dark:bg-coldHeights-900">
         {children}
       </main>
     )
