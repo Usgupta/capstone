@@ -10,15 +10,21 @@ export default function Navbar() {
 	const pathname = usePathname();
 	
 	const toggleDarkMode = () => {
+		console.log('toggling dark mode');
 		setDarkMode(!isDarkMode);
 		document.documentElement.classList.toggle('dark') // Puts dark class in <html> tag
 	};
 
 	return (
-		<nav className="w-full z-20 top-0 left-0 fixed bg-white/50 border-b border-gray-200 dark:border-black backdrop-filter backdrop-blur-lg dark:bg-coldHeights-900 transition-all duration-300">
+		<nav className="w-full z-20 top-0 left-0 fixed bg-white/50 border-b border-gray-200 dark:border-black backdrop-filter backdrop-blur-lg dark:bg-coldHeights-900 transition-colors duration-300">
 			<div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
 				<header className="flex items-center">
-					<Link href="/"><img src="https://www.htx.gov.sg/images/default-source/htx-image-library/who-we-are_why-we-exist_logoe20dfc9c67824b68ba78e31fb41f5c9f.png?sfvrsn=c4524eb2_0" className="mr-3 h-16"></img></Link>
+					<Link href="/">
+						{isDarkMode ? 
+							<img src="https://www.htx.gov.sg/images/default-source/htx-image-library/agency-logo-user.png?sfvrsn=1d21c422_0" className="mr-3 h-16"></img>
+						  : <img src="https://www.htx.gov.sg/images/default-source/htx-image-library/who-we-are_why-we-exist_logoe20dfc9c67824b68ba78e31fb41f5c9f.png?sfvrsn=c4524eb2_0" className="mr-3 h-16"></img>
+						}
+					</Link>
 					<Link href="/" className="font-semibold text-lg dark:text-white">Audio Deepfake Detector</Link>
 				</header>
 				<div className="flex justify-between max-sm:hidden">
